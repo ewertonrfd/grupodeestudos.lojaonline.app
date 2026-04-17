@@ -70,87 +70,89 @@ class _ProfileScreenState extends State<ProfileScreen> {
       appBar: AppBar(
         title: const Text('Meu Perfil'),
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(24),
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 500),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Center(
-                child: CircleAvatar(
-                  radius: 48,
-                  backgroundColor: theme.primaryColor.withOpacity(0.2),
-                  child: Icon(Icons.person, size: 48, color: theme.primaryColor),
-                ),
-              ),
-              const SizedBox(height: 16),
-              Center(
-                child: Text(
-                  user?.email ?? '',
-                  style: TextStyle(color: Colors.grey[600], fontSize: 14),
-                ),
-              ),
-              Center(
-                child: Container(
-                  margin: const EdgeInsets.only(top: 8),
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                  decoration: BoxDecoration(
-                    color: user?.isLojista == true ? Colors.amber.withOpacity(0.2) : theme.primaryColor.withOpacity(0.1),
-                    borderRadius: BorderRadius.circular(20),
+      body: Center(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(24),
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 600),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Center(
+                  child: CircleAvatar(
+                    radius: 48,
+                    backgroundColor: Colors.transparent,
+                    backgroundImage: const AssetImage('assets/user_placeholder.png'),
                   ),
+                ),
+                const SizedBox(height: 16),
+                Center(
                   child: Text(
-                    user?.isLojista == true ? '🏪 Lojista' : '👤 Usuário',
-                    style: TextStyle(
-                      color: user?.isLojista == true ? Colors.amber[800] : theme.primaryColor,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 12,
+                    user?.email ?? '',
+                    style: TextStyle(color: Colors.grey[600], fontSize: 14),
+                  ),
+                ),
+                Center(
+                  child: Container(
+                    margin: const EdgeInsets.only(top: 8),
+                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                    decoration: BoxDecoration(
+                      color: user?.isLojista == true ? Colors.amber.withOpacity(0.2) : theme.primaryColor.withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Text(
+                      user?.isLojista == true ? '🏪 Lojista' : '👤 Usuário',
+                      style: TextStyle(
+                        color: user?.isLojista == true ? Colors.amber[800] : theme.primaryColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 12,
+                      ),
                     ),
                   ),
                 ),
-              ),
-              const SizedBox(height: 32),
-              Text('Nome', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey[700])),
-              const SizedBox(height: 8),
-              TextField(
-                controller: _nameCtrl,
-                decoration: const InputDecoration(
-                  hintText: 'Seu nome',
-                  prefixIcon: Icon(Icons.person_outline),
+                const SizedBox(height: 32),
+                Text('Nome', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey[700])),
+                const SizedBox(height: 8),
+                TextField(
+                  controller: _nameCtrl,
+                  decoration: const InputDecoration(
+                    hintText: 'Seu nome',
+                    prefixIcon: Icon(Icons.person_outline),
+                  ),
                 ),
-              ),
-              const SizedBox(height: 24),
-              Text('Nova Senha (opcional)', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey[700])),
-              const SizedBox(height: 8),
-              TextField(
-                controller: _passwordCtrl,
-                decoration: const InputDecoration(
-                  hintText: 'Deixe em branco para manter',
-                  prefixIcon: Icon(Icons.lock_outline),
+                const SizedBox(height: 24),
+                Text('Nova Senha (opcional)', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey[700])),
+                const SizedBox(height: 8),
+                TextField(
+                  controller: _passwordCtrl,
+                  decoration: const InputDecoration(
+                    hintText: 'Deixe em branco para manter',
+                    prefixIcon: Icon(Icons.lock_outline),
+                  ),
+                  obscureText: true,
                 ),
-                obscureText: true,
-              ),
-              const SizedBox(height: 16),
-              TextField(
-                controller: _confirmPasswordCtrl,
-                decoration: const InputDecoration(
-                  hintText: 'Confirmar nova senha',
-                  prefixIcon: Icon(Icons.lock_outline),
+                const SizedBox(height: 16),
+                TextField(
+                  controller: _confirmPasswordCtrl,
+                  decoration: const InputDecoration(
+                    hintText: 'Confirmar nova senha',
+                    prefixIcon: Icon(Icons.lock_outline),
+                  ),
+                  obscureText: true,
                 ),
-                obscureText: true,
-              ),
-              const SizedBox(height: 32),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton.icon(
-                  onPressed: auth.isLoading ? null : _save,
-                  icon: const Icon(Icons.save),
-                  label: auth.isLoading
-                      ? const SizedBox(width: 20, height: 20, child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2))
-                      : const Text('Salvar Alterações'),
+                const SizedBox(height: 32),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton.icon(
+                    onPressed: auth.isLoading ? null : _save,
+                    icon: const Icon(Icons.save),
+                    label: auth.isLoading
+                        ? const SizedBox(width: 20, height: 20, child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2))
+                        : const Text('Salvar Alterações'),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

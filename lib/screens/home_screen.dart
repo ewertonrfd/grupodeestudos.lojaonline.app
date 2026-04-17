@@ -91,7 +91,19 @@ class _HomeScreenState extends State<HomeScreen> {
       body: productProvider.isLoading
           ? const Center(child: CircularProgressIndicator())
           : productProvider.products.isEmpty
-              ? const Center(child: Text('Nenhum produto encontrado.'))
+              ? Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset('assets/empty_products.png', height: 200),
+                      const SizedBox(height: 16),
+                      const Text(
+                        'Nenhum produto encontrado.',
+                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                      ),
+                    ],
+                  ),
+                )
               : GridView.builder(
                   padding: const EdgeInsets.all(16),
                   gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(

@@ -95,10 +95,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Icon(
-                      Icons.storefront,
-                      size: 64,
-                      color: theme.primaryColor,
+                    Image.asset(
+                      'assets/app_icon.png',
+                      height: 100,
                     ).animate().scale(delay: 200.ms, duration: 400.ms),
                     const SizedBox(height: 16),
                     Text(
@@ -121,6 +120,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       controller: _emailCtrl,
                       decoration: const InputDecoration(labelText: 'E-mail'),
                       keyboardType: TextInputType.emailAddress,
+                      textInputAction: TextInputAction.next,
+                      autofillHints: const [AutofillHints.email],
                     ).animate().slideX(delay: 100.ms),
                     
                     const SizedBox(height: 16),
@@ -129,6 +130,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       controller: _passwordCtrl,
                       decoration: const InputDecoration(labelText: 'Senha'),
                       obscureText: true,
+                      textInputAction: TextInputAction.done,
+                      onSubmitted: (_) => _submit(),
+                      autofillHints: const [AutofillHints.password],
                     ).animate().slideX(delay: 200.ms),
 
                     const SizedBox(height: 24),
