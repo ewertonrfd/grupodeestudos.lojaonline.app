@@ -98,11 +98,13 @@ class _LojistaDashboardState extends State<LojistaDashboard> {
 
     return Scaffold(
       appBar: AppBar(
-        leading: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Image.asset('assets/app_icon.png'),
+        title: Row(
+          children: [
+            Image.asset('assets/app_icon.png', height: 32),
+            const SizedBox(width: 12),
+            const Text('Painel do Lojista'),
+          ],
         ),
-        title: const Text('Painel do Lojista'),
       ),
       body: productProvider.isLoading
           ? const Center(child: CircularProgressIndicator())
